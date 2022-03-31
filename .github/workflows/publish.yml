@@ -49,6 +49,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           server: ${{ secrets.SERVER }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}_rocm-5.1.0.zip
+          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}.zip
           remote_path: '${{ secrets.STG_UPLOAD_URL }}'
           args: '-o ConnectTimeout=5'
