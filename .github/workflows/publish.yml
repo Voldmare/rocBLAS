@@ -29,7 +29,7 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: branch_name
       - name: zipping files
-        run: zip -r ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}.zip . -x '*.git*' '*.idea*'
+        run: zip -r ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}_rocm-5.1.0.zip . -x '*.git*' '*.idea*'
       - name: echo-step
         run: echo "${{ steps.branch_name.outputs.branch }}"
       - name: uploading archive to prod
@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           server: ${{ secrets.SERVER }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}.zip
+          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}_rocm-5.1.0.zip
           remote_path: '${{ secrets.PROD_UPLOAD_URL }}'
           args: '-o ConnectTimeout=5'
       - name: uploading archive to staging
@@ -49,6 +49,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           server: ${{ secrets.SERVER }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}.zip
+          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}_rocm-5.1.0.zip
           remote_path: '${{ secrets.STG_UPLOAD_URL }}'
           args: '-o ConnectTimeout=5'
