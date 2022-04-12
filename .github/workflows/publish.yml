@@ -28,7 +28,7 @@ jobs:
 
       - name: getting branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${{ github.event.release.target_commitish }})"
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: branch_name
       - name: getting tag name
         shell: bash
