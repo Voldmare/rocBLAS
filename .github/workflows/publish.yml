@@ -7,7 +7,7 @@ on:
   push:
     branches: [develop, master]
     tags:
-      - rocm-5.1.0
+      - rocm-*
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,12 +26,16 @@ jobs:
 
       - name: getting branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "##[set-output name=branch;]$(echo ${github.event.release.target_commitish})"
         id: branch_name
+      - name: getting tag name
+        shell: bash
+        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF_NAME})"
+        id: tag_name
       - name: zipping files
-        run: zip -r ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}_rocm-5.1.0.zip . -x '*.git*' '*.idea*'
+        run: zip -r ${{ github.event.repository.name }}_${{ steps.tag_name.outputs.tag }}.zip . -x '*.git*' '*.idea*'
       - name: echo-step
-        run: echo "${{ steps.branch_name.outputs.branch }}"
+        run: echo "${github.event.release.target_commitish}"
       - name: uploading archive to prod
         if: ${{ steps.branch_name.outputs.branch == 'master' }}
         uses: wlixcc/SFTP-Deploy-Action@v1.0
@@ -39,7 +43,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           server: ${{ secrets.SERVER }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}_rocm-5.1.0.zip
+          local_path: ${{ github.event.repository.name }}_${{ steps.tag_name.outputs.branch }}.zip
           remote_path: '${{ secrets.PROD_UPLOAD_URL }}'
           args: '-o ConnectTimeout=5'
       - name: uploading archive to staging
@@ -49,6 +53,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           server: ${{ secrets.SERVER }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: ${{ github.event.repository.name }}_${{ steps.branch_name.outputs.branch }}_rocm-5.1.0.zip
+          local_path: ${{ github.event.repository.name }}_${{ steps.tag_name.outputs.branch }}.zip
           remote_path: '${{ secrets.STG_UPLOAD_URL }}'
           args: '-o ConnectTimeout=5'
