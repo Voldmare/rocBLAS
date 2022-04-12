@@ -4,8 +4,7 @@ name: Upload to the upload server
 
 # Controls when the workflow will run
 on:
-  push:
-    branches: [develop, master]
+  release:
     tags:
       - rocm-*
 
@@ -35,7 +34,7 @@ jobs:
       - name: zipping files
         run: zip -r ${{ github.event.repository.name }}_${{ steps.tag_name.outputs.tag }}.zip . -x '*.git*' '*.idea*'
       - name: echo-step
-        run: echo "${{ github.event.push.target_commitish }}"
+        run: echo "${{ github.event.release.target_commitish }}"
       - name: uploading archive to prod
         if: ${{ steps.branch_name.outputs.branch == 'master' }}
         uses: wlixcc/SFTP-Deploy-Action@v1.0
