@@ -5,7 +5,7 @@ name: Upload to the upload server
 # Controls when the workflow will run
 on:
   push: 
-    branches: [develop,master]
+    branches: [develop, master]
   release:
     create:
       tags:
