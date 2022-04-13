@@ -7,9 +7,7 @@ on:
   push: 
     branches: [develop, master]
   release:
-    create:
-      tags:
-        - rocm-*
+    types: [published]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
