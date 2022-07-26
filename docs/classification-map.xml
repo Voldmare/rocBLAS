@@ -86,17 +86,17 @@
    <Row ss:AutoFitHeight="0" ss:Height="15">
     <Cell ss:StyleID="s62"><Data ss:Type="String">MAP</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="String">rocm;</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">4-5</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">5-0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="15">
     <Cell ss:StyleID="s62"><Data ss:Type="String">apply-ALL</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="String">rocm;</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">4-5</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">5-0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="15">
     <Cell ss:StyleID="s62"><Data ss:Type="String">default</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="String">rocm;</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">4-5</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">5-0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">rocBLAS API Guide </Data></Cell>
